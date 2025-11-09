@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 package expert_search;
-option go_package = "github.com/drobyshevv/proto-classifier-service/gen/go/service";
+option go_package = "drobyshev.service.v1;servicev1";
 
 import "google/api/annotations.proto";
 

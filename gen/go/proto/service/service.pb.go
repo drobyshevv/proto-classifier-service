@@ -4,7 +4,7 @@
 // 	protoc        v6.33.0
 // source: proto/service/service.proto
 
-package service
+package servicev1
 
 import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
@@ -1133,7 +1133,7 @@ const file_proto_service_service_proto_rawDesc = "" +
 	"\rSearchExperts\x12\".expert_search.ExpertSearchRequest\x1a#.expert_search.ExpertSearchResponse\"\x13\x82\xd3\xe4\x93\x02\r\x12\v/v1/experts\x12}\n" +
 	"\x11SearchDepartments\x12&.expert_search.DepartmentSearchRequest\x1a'.expert_search.DepartmentSearchResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/departments\x12t\n" +
 	"\fAnalyzeTopic\x12#.expert_search.TopicAnalysisRequest\x1a$.expert_search.TopicAnalysisResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/analyze-topic\x12q\n" +
-	"\x0eSearchArticles\x12#.expert_search.ArticleSearchRequest\x1a$.expert_search.ArticleSearchResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/articlesB?Z=github.com/drobyshevv/proto-classifier-service/gen/go/serviceb\x06proto3"
+	"\x0eSearchArticles\x12#.expert_search.ArticleSearchRequest\x1a$.expert_search.ArticleSearchResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/articlesB Z\x1edrobyshev.service.v1;servicev1b\x06proto3"
 
 var (
 	file_proto_service_service_proto_rawDescOnce sync.Once
