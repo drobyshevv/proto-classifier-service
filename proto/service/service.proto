@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+package expert_search;
+option go_package = "github.com/drobyshevv/proto-classifier-service/gen/go/service";
+
+import "google/api/annotations.proto";
+
+service ExpertSearchService {
+  // ==================== АДМИН: ИНИЦИАЛИЗАЦИЯ СИСТЕМЫ ====================
+  rpc InitializeSystem(InitializeRequest) returns (InitializeResponse) {
+    option (google.api.http) = {
+      post: "/v1/admin/initialize-system"
+      body: "*"
+    };
+  }
+  
+  // ==================== ПОИСК ЭКСПЕРТОВ ====================
+  rpc SearchExperts(ExpertSearchRequest) returns (ExpertSearchResponse) {
+    option (google.api.http) = {
+      get: "/v1/experts"
+    };
+  }
+  
+  // ==================== ПОИСК ПОДРАЗДЕЛЕНИЙ ====================
+  rpc SearchDepartments(DepartmentSearchRequest) returns (DepartmentSearchResponse) {
+    option (google.api.http) = {
+      get: "/v1/departments"
+    };
+  }
+  
+  // ==================== АНАЛИЗ ТЕМЫ ====================
+  rpc AnalyzeTopic(TopicAnalysisRequest) returns (TopicAnalysisResponse) {
+    option (google.api.http) = {
+      get: "/v1/analyze-topic"
+    };
+  }
+  
+  // ==================== ПОИСК СТАТЕЙ ====================
+  rpc SearchArticles(ArticleSearchRequest) returns (ArticleSearchResponse) {
+    option (google.api.http) = {
+      get: "/v1/articles"
+    };
+  }
+}
+
+// ==================== АДМИН: ИНИЦИАЛИЗАЦИЯ СИСТЕМЫ ====================
+message InitializeRequest {
+  bool force_reload = 1;                // Принудительно пересчитать все данные
+  bool skip_existing = 2;               // Пропустить статьи с уже вычисленными векторами
+  int32 batch_size = 3;                 // Размер батча для обработки (default: 100)
+  repeated string specific_documents = 4; // Опционально: обработать только указанные document_id
+}
+
+message InitializeResponse {
+  string job_id = 1;                    // ID задачи инициализации для отслеживания
+  string status = 2;                    // "started", "in_progress", "completed", "failed"
+  int32 total_articles = 3;             // Всего статей для обработки
+  int32 processed_articles = 4;         // Обработано статей
+  int32 estimated_remaining_seconds = 5; // Оставшееся время в секундах
+  string started_at = 6;                // Время начала обработки
+  string current_article = 7;           // Текущая обрабатываемая статья (для прогресса)
+}
+
+// ==================== СТАТУС ИНИЦИАЛИЗАЦИИ ====================
+message InitializationStatusRequest {
+  string job_id = 1;                    // ID задачи для проверки статуса
+}
+
+message InitializationStatusResponse {
+  string job_id = 1;
+  string status = 2;                    // "processing", "completed", "failed"
+  int32 processed_articles = 3;
+  int32 total_articles = 4;
+  float progress_percentage = 5;        // Прогресс в процентах (0.0 - 100.0)
+  string current_article = 6;
+  string estimated_completion_time = 7;
+  repeated string errors = 8;           // Ошибки если есть
+  map<string, int32> topics_statistics = 9; // Статистика по темам: {"машинное обучение": 45, ...}
+}
+
+// ==================== ПОИСК ЭКСПЕРТОВ (АВТОРОВ) ====================
+message ExpertSearchRequest {
+  string query = 1;                    // Обязательно: тема для поиска экспертов
+  string filter_department = 2;        // Опционально: фильтр по подразделению
+  int32 max_results = 3;               // Опционально: лимит результатов (default: 20)
+}
+
+message ExpertSearchResponse {
+  repeated Expert experts = 1;         // Список найденных экспертов
+  int32 total_found = 2;               // Общее количество найденных экспертов
+}
+
+message Expert {
+  string author_id = 1;                // Из authors.author_id
+  string name_ru = 2;                  // Из authors.lastname_ru + authors.initials_ru
+  string department = 3;               // Из organizations.name через document_authors
+  float expertise_score = 4;           // Из topic_experts.expertise_score
+  int32 article_count = 5;             // Из topic_experts.article_count
+  int32 total_citations = 6;           // Из topic_experts.total_citations
+  int32 last_activity_year = 7;        // Из topic_experts.last_activity_year
+}
+
+// ==================== ПОИСК ПОДРАЗДЕЛЕНИЙ ====================
+message DepartmentSearchRequest {
+  string query = 1;                    // Обязательно: тема для поиска подразделений
+  int32 max_results = 2;               // Опционально: лимит результатов (default: 10)
+}
+
+message DepartmentSearchResponse {
+  repeated Department departments = 1; // Список найденных подразделений
+  int32 total_found = 2;               // Общее количество найденных подразделений
+}
+
+message Department {
+  string organization_id = 1;          // Из organizations.organization_id
+  string name = 2;                     // Из organizations.name
+  float strength_score = 3;            // Из department_topics.strength_score
+  int32 expert_count = 4;              // Из department_topics.expert_count
+  int32 total_articles = 5;            // Из department_topics.total_articles
+  repeated string key_authors = 6;     // Агрегация из authors через document_authors
+}
+
+// ==================== ПОИСК СТАТЕЙ ====================
+message ArticleSearchRequest {
+  string query = 1;                    // Обязательно: тема для поиска статей
+  int32 max_results = 2;               // Опционально: лимит результатов (default: 50)
+}
+
+message ArticleSearchResponse {
+  repeated Article articles = 1;       // Список найденных статей
+  int32 total_found = 2;               // Общее количество найденных статей
+}
+
+message Article {
+  string document_id = 1;              // Из documents.document_id
+  string title_ru = 2;                 // Из documents.title_ru
+  string abstract_ru = 3;              // Из documents.abstract_ru (первые 200 символов)
+  int32 year = 4;                      // Из documents.yearpubl
+  repeated string authors = 5;         // Агрегация из authors через document_authors
+  float relevance_score = 6;           // Рассчитывается AI при семантическом поиске
+  repeated string matched_topics = 7;  // Из article_topics.topic_name
+}
+
+// ==================== АНАЛИЗ ТЕМЫ ====================
+message TopicAnalysisRequest {
+  string query = 1;                    // Обязательно: запрос для анализа
+}
+
+message TopicAnalysisResponse {
+  string main_topic = 1;               // Основная выявленная тема
+  repeated string related_topics = 2;  // Смежные и связанные темы
+  string topic_description = 3;        // Описание и определение темы
+}
