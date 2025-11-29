@@ -1032,6 +1032,605 @@ func (x *TopicAnalysisResponse) GetTopicDescription() string {
 	return ""
 }
 
+// ==================== СЕМАНТИЧЕСКИЙ ПОИСК СТАТЕЙ ====================
+type SemanticArticleSearchRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	MaxResults    int32                  `protobuf:"varint,2,opt,name=max_results,json=maxResults,proto3" json:"max_results,omitempty"`
+	MinScore      float32                `protobuf:"fixed32,3,opt,name=min_score,json=minScore,proto3" json:"min_score,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SemanticArticleSearchRequest) Reset() {
+	*x = SemanticArticleSearchRequest{}
+	mi := &file_proto_service_service_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SemanticArticleSearchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SemanticArticleSearchRequest) ProtoMessage() {}
+
+func (x *SemanticArticleSearchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_service_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SemanticArticleSearchRequest.ProtoReflect.Descriptor instead.
+func (*SemanticArticleSearchRequest) Descriptor() ([]byte, []int) {
+	return file_proto_service_service_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *SemanticArticleSearchRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *SemanticArticleSearchRequest) GetMaxResults() int32 {
+	if x != nil {
+		return x.MaxResults
+	}
+	return 0
+}
+
+func (x *SemanticArticleSearchRequest) GetMinScore() float32 {
+	if x != nil {
+		return x.MinScore
+	}
+	return 0
+}
+
+type SemanticArticleSearchResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Articles      []*SemanticArticle     `protobuf:"bytes,1,rep,name=articles,proto3" json:"articles,omitempty"`
+	TotalFound    int32                  `protobuf:"varint,2,opt,name=total_found,json=totalFound,proto3" json:"total_found,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SemanticArticleSearchResponse) Reset() {
+	*x = SemanticArticleSearchResponse{}
+	mi := &file_proto_service_service_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SemanticArticleSearchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SemanticArticleSearchResponse) ProtoMessage() {}
+
+func (x *SemanticArticleSearchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_service_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SemanticArticleSearchResponse.ProtoReflect.Descriptor instead.
+func (*SemanticArticleSearchResponse) Descriptor() ([]byte, []int) {
+	return file_proto_service_service_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *SemanticArticleSearchResponse) GetArticles() []*SemanticArticle {
+	if x != nil {
+		return x.Articles
+	}
+	return nil
+}
+
+func (x *SemanticArticleSearchResponse) GetTotalFound() int32 {
+	if x != nil {
+		return x.TotalFound
+	}
+	return 0
+}
+
+type SemanticArticle struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DocumentId    string                 `protobuf:"bytes,1,opt,name=document_id,json=documentId,proto3" json:"document_id,omitempty"`
+	TitleRu       string                 `protobuf:"bytes,2,opt,name=title_ru,json=titleRu,proto3" json:"title_ru,omitempty"`
+	AbstractRu    string                 `protobuf:"bytes,3,opt,name=abstract_ru,json=abstractRu,proto3" json:"abstract_ru,omitempty"`
+	Year          int32                  `protobuf:"varint,4,opt,name=year,proto3" json:"year,omitempty"`
+	Authors       []string               `protobuf:"bytes,5,rep,name=authors,proto3" json:"authors,omitempty"`
+	SemanticScore float32                `protobuf:"fixed32,6,opt,name=semantic_score,json=semanticScore,proto3" json:"semantic_score,omitempty"`
+	MatchedTopics []string               `protobuf:"bytes,7,rep,name=matched_topics,json=matchedTopics,proto3" json:"matched_topics,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SemanticArticle) Reset() {
+	*x = SemanticArticle{}
+	mi := &file_proto_service_service_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SemanticArticle) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SemanticArticle) ProtoMessage() {}
+
+func (x *SemanticArticle) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_service_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SemanticArticle.ProtoReflect.Descriptor instead.
+func (*SemanticArticle) Descriptor() ([]byte, []int) {
+	return file_proto_service_service_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *SemanticArticle) GetDocumentId() string {
+	if x != nil {
+		return x.DocumentId
+	}
+	return ""
+}
+
+func (x *SemanticArticle) GetTitleRu() string {
+	if x != nil {
+		return x.TitleRu
+	}
+	return ""
+}
+
+func (x *SemanticArticle) GetAbstractRu() string {
+	if x != nil {
+		return x.AbstractRu
+	}
+	return ""
+}
+
+func (x *SemanticArticle) GetYear() int32 {
+	if x != nil {
+		return x.Year
+	}
+	return 0
+}
+
+func (x *SemanticArticle) GetAuthors() []string {
+	if x != nil {
+		return x.Authors
+	}
+	return nil
+}
+
+func (x *SemanticArticle) GetSemanticScore() float32 {
+	if x != nil {
+		return x.SemanticScore
+	}
+	return 0
+}
+
+func (x *SemanticArticle) GetMatchedTopics() []string {
+	if x != nil {
+		return x.MatchedTopics
+	}
+	return nil
+}
+
+// ==================== СЕМАНТИЧЕСКИЙ ПОИСК ЭКСПЕРТОВ ====================
+type SemanticExpertSearchRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	MaxResults    int32                  `protobuf:"varint,2,opt,name=max_results,json=maxResults,proto3" json:"max_results,omitempty"`
+	MinScore      float32                `protobuf:"fixed32,3,opt,name=min_score,json=minScore,proto3" json:"min_score,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SemanticExpertSearchRequest) Reset() {
+	*x = SemanticExpertSearchRequest{}
+	mi := &file_proto_service_service_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SemanticExpertSearchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SemanticExpertSearchRequest) ProtoMessage() {}
+
+func (x *SemanticExpertSearchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_service_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SemanticExpertSearchRequest.ProtoReflect.Descriptor instead.
+func (*SemanticExpertSearchRequest) Descriptor() ([]byte, []int) {
+	return file_proto_service_service_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *SemanticExpertSearchRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *SemanticExpertSearchRequest) GetMaxResults() int32 {
+	if x != nil {
+		return x.MaxResults
+	}
+	return 0
+}
+
+func (x *SemanticExpertSearchRequest) GetMinScore() float32 {
+	if x != nil {
+		return x.MinScore
+	}
+	return 0
+}
+
+type SemanticExpertSearchResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Experts       []*SemanticExpert      `protobuf:"bytes,1,rep,name=experts,proto3" json:"experts,omitempty"`
+	TotalFound    int32                  `protobuf:"varint,2,opt,name=total_found,json=totalFound,proto3" json:"total_found,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SemanticExpertSearchResponse) Reset() {
+	*x = SemanticExpertSearchResponse{}
+	mi := &file_proto_service_service_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SemanticExpertSearchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SemanticExpertSearchResponse) ProtoMessage() {}
+
+func (x *SemanticExpertSearchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_service_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SemanticExpertSearchResponse.ProtoReflect.Descriptor instead.
+func (*SemanticExpertSearchResponse) Descriptor() ([]byte, []int) {
+	return file_proto_service_service_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *SemanticExpertSearchResponse) GetExperts() []*SemanticExpert {
+	if x != nil {
+		return x.Experts
+	}
+	return nil
+}
+
+func (x *SemanticExpertSearchResponse) GetTotalFound() int32 {
+	if x != nil {
+		return x.TotalFound
+	}
+	return 0
+}
+
+type SemanticExpert struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AuthorId      string                 `protobuf:"bytes,1,opt,name=author_id,json=authorId,proto3" json:"author_id,omitempty"`
+	NameRu        string                 `protobuf:"bytes,2,opt,name=name_ru,json=nameRu,proto3" json:"name_ru,omitempty"`
+	Department    string                 `protobuf:"bytes,3,opt,name=department,proto3" json:"department,omitempty"`
+	SemanticScore float32                `protobuf:"fixed32,4,opt,name=semantic_score,json=semanticScore,proto3" json:"semantic_score,omitempty"`
+	TotalArticles int32                  `protobuf:"varint,5,opt,name=total_articles,json=totalArticles,proto3" json:"total_articles,omitempty"`
+	TopTopics     []string               `protobuf:"bytes,6,rep,name=top_topics,json=topTopics,proto3" json:"top_topics,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SemanticExpert) Reset() {
+	*x = SemanticExpert{}
+	mi := &file_proto_service_service_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SemanticExpert) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SemanticExpert) ProtoMessage() {}
+
+func (x *SemanticExpert) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_service_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SemanticExpert.ProtoReflect.Descriptor instead.
+func (*SemanticExpert) Descriptor() ([]byte, []int) {
+	return file_proto_service_service_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *SemanticExpert) GetAuthorId() string {
+	if x != nil {
+		return x.AuthorId
+	}
+	return ""
+}
+
+func (x *SemanticExpert) GetNameRu() string {
+	if x != nil {
+		return x.NameRu
+	}
+	return ""
+}
+
+func (x *SemanticExpert) GetDepartment() string {
+	if x != nil {
+		return x.Department
+	}
+	return ""
+}
+
+func (x *SemanticExpert) GetSemanticScore() float32 {
+	if x != nil {
+		return x.SemanticScore
+	}
+	return 0
+}
+
+func (x *SemanticExpert) GetTotalArticles() int32 {
+	if x != nil {
+		return x.TotalArticles
+	}
+	return 0
+}
+
+func (x *SemanticExpert) GetTopTopics() []string {
+	if x != nil {
+		return x.TopTopics
+	}
+	return nil
+}
+
+// ==================== СЕМАНТИЧЕСКИЙ ПОИСК ПОДРАЗДЕЛЕНИЙ ====================
+type SemanticDepartmentSearchRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
+	MaxResults    int32                  `protobuf:"varint,2,opt,name=max_results,json=maxResults,proto3" json:"max_results,omitempty"`
+	MinScore      float32                `protobuf:"fixed32,3,opt,name=min_score,json=minScore,proto3" json:"min_score,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SemanticDepartmentSearchRequest) Reset() {
+	*x = SemanticDepartmentSearchRequest{}
+	mi := &file_proto_service_service_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SemanticDepartmentSearchRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SemanticDepartmentSearchRequest) ProtoMessage() {}
+
+func (x *SemanticDepartmentSearchRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_service_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SemanticDepartmentSearchRequest.ProtoReflect.Descriptor instead.
+func (*SemanticDepartmentSearchRequest) Descriptor() ([]byte, []int) {
+	return file_proto_service_service_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *SemanticDepartmentSearchRequest) GetQuery() string {
+	if x != nil {
+		return x.Query
+	}
+	return ""
+}
+
+func (x *SemanticDepartmentSearchRequest) GetMaxResults() int32 {
+	if x != nil {
+		return x.MaxResults
+	}
+	return 0
+}
+
+func (x *SemanticDepartmentSearchRequest) GetMinScore() float32 {
+	if x != nil {
+		return x.MinScore
+	}
+	return 0
+}
+
+type SemanticDepartmentSearchResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Departments   []*SemanticDepartment  `protobuf:"bytes,1,rep,name=departments,proto3" json:"departments,omitempty"`
+	TotalFound    int32                  `protobuf:"varint,2,opt,name=total_found,json=totalFound,proto3" json:"total_found,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SemanticDepartmentSearchResponse) Reset() {
+	*x = SemanticDepartmentSearchResponse{}
+	mi := &file_proto_service_service_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SemanticDepartmentSearchResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SemanticDepartmentSearchResponse) ProtoMessage() {}
+
+func (x *SemanticDepartmentSearchResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_service_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SemanticDepartmentSearchResponse.ProtoReflect.Descriptor instead.
+func (*SemanticDepartmentSearchResponse) Descriptor() ([]byte, []int) {
+	return file_proto_service_service_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *SemanticDepartmentSearchResponse) GetDepartments() []*SemanticDepartment {
+	if x != nil {
+		return x.Departments
+	}
+	return nil
+}
+
+func (x *SemanticDepartmentSearchResponse) GetTotalFound() int32 {
+	if x != nil {
+		return x.TotalFound
+	}
+	return 0
+}
+
+type SemanticDepartment struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	OrganizationId string                 `protobuf:"bytes,1,opt,name=organization_id,json=organizationId,proto3" json:"organization_id,omitempty"`
+	Name           string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	SemanticScore  float32                `protobuf:"fixed32,3,opt,name=semantic_score,json=semanticScore,proto3" json:"semantic_score,omitempty"`
+	TotalArticles  int32                  `protobuf:"varint,4,opt,name=total_articles,json=totalArticles,proto3" json:"total_articles,omitempty"`
+	ExpertCount    int32                  `protobuf:"varint,5,opt,name=expert_count,json=expertCount,proto3" json:"expert_count,omitempty"`
+	TopTopics      []string               `protobuf:"bytes,6,rep,name=top_topics,json=topTopics,proto3" json:"top_topics,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *SemanticDepartment) Reset() {
+	*x = SemanticDepartment{}
+	mi := &file_proto_service_service_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SemanticDepartment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SemanticDepartment) ProtoMessage() {}
+
+func (x *SemanticDepartment) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_service_service_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SemanticDepartment.ProtoReflect.Descriptor instead.
+func (*SemanticDepartment) Descriptor() ([]byte, []int) {
+	return file_proto_service_service_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *SemanticDepartment) GetOrganizationId() string {
+	if x != nil {
+		return x.OrganizationId
+	}
+	return ""
+}
+
+func (x *SemanticDepartment) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *SemanticDepartment) GetSemanticScore() float32 {
+	if x != nil {
+		return x.SemanticScore
+	}
+	return 0
+}
+
+func (x *SemanticDepartment) GetTotalArticles() int32 {
+	if x != nil {
+		return x.TotalArticles
+	}
+	return 0
+}
+
+func (x *SemanticDepartment) GetExpertCount() int32 {
+	if x != nil {
+		return x.ExpertCount
+	}
+	return 0
+}
+
+func (x *SemanticDepartment) GetTopTopics() []string {
+	if x != nil {
+		return x.TopTopics
+	}
+	return nil
+}
+
 var File_proto_service_service_proto protoreflect.FileDescriptor
 
 const file_proto_service_service_proto_rawDesc = "" +
@@ -1127,13 +1726,71 @@ const file_proto_service_service_proto_rawDesc = "" +
 	"\n" +
 	"main_topic\x18\x01 \x01(\tR\tmainTopic\x12%\n" +
 	"\x0erelated_topics\x18\x02 \x03(\tR\rrelatedTopics\x12+\n" +
-	"\x11topic_description\x18\x03 \x01(\tR\x10topicDescription2\xed\x04\n" +
+	"\x11topic_description\x18\x03 \x01(\tR\x10topicDescription\"r\n" +
+	"\x1cSemanticArticleSearchRequest\x12\x14\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\x12\x1f\n" +
+	"\vmax_results\x18\x02 \x01(\x05R\n" +
+	"maxResults\x12\x1b\n" +
+	"\tmin_score\x18\x03 \x01(\x02R\bminScore\"|\n" +
+	"\x1dSemanticArticleSearchResponse\x12:\n" +
+	"\barticles\x18\x01 \x03(\v2\x1e.expert_search.SemanticArticleR\barticles\x12\x1f\n" +
+	"\vtotal_found\x18\x02 \x01(\x05R\n" +
+	"totalFound\"\xea\x01\n" +
+	"\x0fSemanticArticle\x12\x1f\n" +
+	"\vdocument_id\x18\x01 \x01(\tR\n" +
+	"documentId\x12\x19\n" +
+	"\btitle_ru\x18\x02 \x01(\tR\atitleRu\x12\x1f\n" +
+	"\vabstract_ru\x18\x03 \x01(\tR\n" +
+	"abstractRu\x12\x12\n" +
+	"\x04year\x18\x04 \x01(\x05R\x04year\x12\x18\n" +
+	"\aauthors\x18\x05 \x03(\tR\aauthors\x12%\n" +
+	"\x0esemantic_score\x18\x06 \x01(\x02R\rsemanticScore\x12%\n" +
+	"\x0ematched_topics\x18\a \x03(\tR\rmatchedTopics\"q\n" +
+	"\x1bSemanticExpertSearchRequest\x12\x14\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\x12\x1f\n" +
+	"\vmax_results\x18\x02 \x01(\x05R\n" +
+	"maxResults\x12\x1b\n" +
+	"\tmin_score\x18\x03 \x01(\x02R\bminScore\"x\n" +
+	"\x1cSemanticExpertSearchResponse\x127\n" +
+	"\aexperts\x18\x01 \x03(\v2\x1d.expert_search.SemanticExpertR\aexperts\x12\x1f\n" +
+	"\vtotal_found\x18\x02 \x01(\x05R\n" +
+	"totalFound\"\xd3\x01\n" +
+	"\x0eSemanticExpert\x12\x1b\n" +
+	"\tauthor_id\x18\x01 \x01(\tR\bauthorId\x12\x17\n" +
+	"\aname_ru\x18\x02 \x01(\tR\x06nameRu\x12\x1e\n" +
+	"\n" +
+	"department\x18\x03 \x01(\tR\n" +
+	"department\x12%\n" +
+	"\x0esemantic_score\x18\x04 \x01(\x02R\rsemanticScore\x12%\n" +
+	"\x0etotal_articles\x18\x05 \x01(\x05R\rtotalArticles\x12\x1d\n" +
+	"\n" +
+	"top_topics\x18\x06 \x03(\tR\ttopTopics\"u\n" +
+	"\x1fSemanticDepartmentSearchRequest\x12\x14\n" +
+	"\x05query\x18\x01 \x01(\tR\x05query\x12\x1f\n" +
+	"\vmax_results\x18\x02 \x01(\x05R\n" +
+	"maxResults\x12\x1b\n" +
+	"\tmin_score\x18\x03 \x01(\x02R\bminScore\"\x88\x01\n" +
+	" SemanticDepartmentSearchResponse\x12C\n" +
+	"\vdepartments\x18\x01 \x03(\v2!.expert_search.SemanticDepartmentR\vdepartments\x12\x1f\n" +
+	"\vtotal_found\x18\x02 \x01(\x05R\n" +
+	"totalFound\"\xe1\x01\n" +
+	"\x12SemanticDepartment\x12'\n" +
+	"\x0forganization_id\x18\x01 \x01(\tR\x0eorganizationId\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12%\n" +
+	"\x0esemantic_score\x18\x03 \x01(\x02R\rsemanticScore\x12%\n" +
+	"\x0etotal_articles\x18\x04 \x01(\x05R\rtotalArticles\x12!\n" +
+	"\fexpert_count\x18\x05 \x01(\x05R\vexpertCount\x12\x1d\n" +
+	"\n" +
+	"top_topics\x18\x06 \x03(\tR\ttopTopics2\xb4\b\n" +
 	"\x13ExpertSearchService\x12\x7f\n" +
 	"\x10InitializeSystem\x12 .expert_search.InitializeRequest\x1a!.expert_search.InitializeResponse\"&\x82\xd3\xe4\x93\x02 :\x01*\"\x1b/v1/admin/initialize-system\x12m\n" +
 	"\rSearchExperts\x12\".expert_search.ExpertSearchRequest\x1a#.expert_search.ExpertSearchResponse\"\x13\x82\xd3\xe4\x93\x02\r\x12\v/v1/experts\x12}\n" +
 	"\x11SearchDepartments\x12&.expert_search.DepartmentSearchRequest\x1a'.expert_search.DepartmentSearchResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/departments\x12t\n" +
 	"\fAnalyzeTopic\x12#.expert_search.TopicAnalysisRequest\x1a$.expert_search.TopicAnalysisResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/analyze-topic\x12q\n" +
-	"\x0eSearchArticles\x12#.expert_search.ArticleSearchRequest\x1a$.expert_search.ArticleSearchResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/articlesB Z\x1edrobyshev.service.v1;servicev1b\x06proto3"
+	"\x0eSearchArticles\x12#.expert_search.ArticleSearchRequest\x1a$.expert_search.ArticleSearchResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/articles\x12\x92\x01\n" +
+	"\x16SemanticSearchArticles\x12+.expert_search.SemanticArticleSearchRequest\x1a,.expert_search.SemanticArticleSearchResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/semantic/articles\x12\x8e\x01\n" +
+	"\x15SemanticSearchExperts\x12*.expert_search.SemanticExpertSearchRequest\x1a+.expert_search.SemanticExpertSearchResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/semantic/experts\x12\x9e\x01\n" +
+	"\x19SemanticSearchDepartments\x12..expert_search.SemanticDepartmentSearchRequest\x1a/.expert_search.SemanticDepartmentSearchResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/semantic/departmentsB Z\x1edrobyshev.service.v1;servicev1b\x06proto3"
 
 var (
 	file_proto_service_service_proto_rawDescOnce sync.Once
@@ -1147,45 +1804,63 @@ func file_proto_service_service_proto_rawDescGZIP() []byte {
 	return file_proto_service_service_proto_rawDescData
 }
 
-var file_proto_service_service_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_proto_service_service_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_proto_service_service_proto_goTypes = []any{
-	(*InitializeRequest)(nil),            // 0: expert_search.InitializeRequest
-	(*InitializeResponse)(nil),           // 1: expert_search.InitializeResponse
-	(*InitializationStatusRequest)(nil),  // 2: expert_search.InitializationStatusRequest
-	(*InitializationStatusResponse)(nil), // 3: expert_search.InitializationStatusResponse
-	(*ExpertSearchRequest)(nil),          // 4: expert_search.ExpertSearchRequest
-	(*ExpertSearchResponse)(nil),         // 5: expert_search.ExpertSearchResponse
-	(*Expert)(nil),                       // 6: expert_search.Expert
-	(*DepartmentSearchRequest)(nil),      // 7: expert_search.DepartmentSearchRequest
-	(*DepartmentSearchResponse)(nil),     // 8: expert_search.DepartmentSearchResponse
-	(*Department)(nil),                   // 9: expert_search.Department
-	(*ArticleSearchRequest)(nil),         // 10: expert_search.ArticleSearchRequest
-	(*ArticleSearchResponse)(nil),        // 11: expert_search.ArticleSearchResponse
-	(*Article)(nil),                      // 12: expert_search.Article
-	(*TopicAnalysisRequest)(nil),         // 13: expert_search.TopicAnalysisRequest
-	(*TopicAnalysisResponse)(nil),        // 14: expert_search.TopicAnalysisResponse
-	nil,                                  // 15: expert_search.InitializationStatusResponse.TopicsStatisticsEntry
+	(*InitializeRequest)(nil),                // 0: expert_search.InitializeRequest
+	(*InitializeResponse)(nil),               // 1: expert_search.InitializeResponse
+	(*InitializationStatusRequest)(nil),      // 2: expert_search.InitializationStatusRequest
+	(*InitializationStatusResponse)(nil),     // 3: expert_search.InitializationStatusResponse
+	(*ExpertSearchRequest)(nil),              // 4: expert_search.ExpertSearchRequest
+	(*ExpertSearchResponse)(nil),             // 5: expert_search.ExpertSearchResponse
+	(*Expert)(nil),                           // 6: expert_search.Expert
+	(*DepartmentSearchRequest)(nil),          // 7: expert_search.DepartmentSearchRequest
+	(*DepartmentSearchResponse)(nil),         // 8: expert_search.DepartmentSearchResponse
+	(*Department)(nil),                       // 9: expert_search.Department
+	(*ArticleSearchRequest)(nil),             // 10: expert_search.ArticleSearchRequest
+	(*ArticleSearchResponse)(nil),            // 11: expert_search.ArticleSearchResponse
+	(*Article)(nil),                          // 12: expert_search.Article
+	(*TopicAnalysisRequest)(nil),             // 13: expert_search.TopicAnalysisRequest
+	(*TopicAnalysisResponse)(nil),            // 14: expert_search.TopicAnalysisResponse
+	(*SemanticArticleSearchRequest)(nil),     // 15: expert_search.SemanticArticleSearchRequest
+	(*SemanticArticleSearchResponse)(nil),    // 16: expert_search.SemanticArticleSearchResponse
+	(*SemanticArticle)(nil),                  // 17: expert_search.SemanticArticle
+	(*SemanticExpertSearchRequest)(nil),      // 18: expert_search.SemanticExpertSearchRequest
+	(*SemanticExpertSearchResponse)(nil),     // 19: expert_search.SemanticExpertSearchResponse
+	(*SemanticExpert)(nil),                   // 20: expert_search.SemanticExpert
+	(*SemanticDepartmentSearchRequest)(nil),  // 21: expert_search.SemanticDepartmentSearchRequest
+	(*SemanticDepartmentSearchResponse)(nil), // 22: expert_search.SemanticDepartmentSearchResponse
+	(*SemanticDepartment)(nil),               // 23: expert_search.SemanticDepartment
+	nil,                                      // 24: expert_search.InitializationStatusResponse.TopicsStatisticsEntry
 }
 var file_proto_service_service_proto_depIdxs = []int32{
-	15, // 0: expert_search.InitializationStatusResponse.topics_statistics:type_name -> expert_search.InitializationStatusResponse.TopicsStatisticsEntry
+	24, // 0: expert_search.InitializationStatusResponse.topics_statistics:type_name -> expert_search.InitializationStatusResponse.TopicsStatisticsEntry
 	6,  // 1: expert_search.ExpertSearchResponse.experts:type_name -> expert_search.Expert
 	9,  // 2: expert_search.DepartmentSearchResponse.departments:type_name -> expert_search.Department
 	12, // 3: expert_search.ArticleSearchResponse.articles:type_name -> expert_search.Article
-	0,  // 4: expert_search.ExpertSearchService.InitializeSystem:input_type -> expert_search.InitializeRequest
-	4,  // 5: expert_search.ExpertSearchService.SearchExperts:input_type -> expert_search.ExpertSearchRequest
-	7,  // 6: expert_search.ExpertSearchService.SearchDepartments:input_type -> expert_search.DepartmentSearchRequest
-	13, // 7: expert_search.ExpertSearchService.AnalyzeTopic:input_type -> expert_search.TopicAnalysisRequest
-	10, // 8: expert_search.ExpertSearchService.SearchArticles:input_type -> expert_search.ArticleSearchRequest
-	1,  // 9: expert_search.ExpertSearchService.InitializeSystem:output_type -> expert_search.InitializeResponse
-	5,  // 10: expert_search.ExpertSearchService.SearchExperts:output_type -> expert_search.ExpertSearchResponse
-	8,  // 11: expert_search.ExpertSearchService.SearchDepartments:output_type -> expert_search.DepartmentSearchResponse
-	14, // 12: expert_search.ExpertSearchService.AnalyzeTopic:output_type -> expert_search.TopicAnalysisResponse
-	11, // 13: expert_search.ExpertSearchService.SearchArticles:output_type -> expert_search.ArticleSearchResponse
-	9,  // [9:14] is the sub-list for method output_type
-	4,  // [4:9] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	17, // 4: expert_search.SemanticArticleSearchResponse.articles:type_name -> expert_search.SemanticArticle
+	20, // 5: expert_search.SemanticExpertSearchResponse.experts:type_name -> expert_search.SemanticExpert
+	23, // 6: expert_search.SemanticDepartmentSearchResponse.departments:type_name -> expert_search.SemanticDepartment
+	0,  // 7: expert_search.ExpertSearchService.InitializeSystem:input_type -> expert_search.InitializeRequest
+	4,  // 8: expert_search.ExpertSearchService.SearchExperts:input_type -> expert_search.ExpertSearchRequest
+	7,  // 9: expert_search.ExpertSearchService.SearchDepartments:input_type -> expert_search.DepartmentSearchRequest
+	13, // 10: expert_search.ExpertSearchService.AnalyzeTopic:input_type -> expert_search.TopicAnalysisRequest
+	10, // 11: expert_search.ExpertSearchService.SearchArticles:input_type -> expert_search.ArticleSearchRequest
+	15, // 12: expert_search.ExpertSearchService.SemanticSearchArticles:input_type -> expert_search.SemanticArticleSearchRequest
+	18, // 13: expert_search.ExpertSearchService.SemanticSearchExperts:input_type -> expert_search.SemanticExpertSearchRequest
+	21, // 14: expert_search.ExpertSearchService.SemanticSearchDepartments:input_type -> expert_search.SemanticDepartmentSearchRequest
+	1,  // 15: expert_search.ExpertSearchService.InitializeSystem:output_type -> expert_search.InitializeResponse
+	5,  // 16: expert_search.ExpertSearchService.SearchExperts:output_type -> expert_search.ExpertSearchResponse
+	8,  // 17: expert_search.ExpertSearchService.SearchDepartments:output_type -> expert_search.DepartmentSearchResponse
+	14, // 18: expert_search.ExpertSearchService.AnalyzeTopic:output_type -> expert_search.TopicAnalysisResponse
+	11, // 19: expert_search.ExpertSearchService.SearchArticles:output_type -> expert_search.ArticleSearchResponse
+	16, // 20: expert_search.ExpertSearchService.SemanticSearchArticles:output_type -> expert_search.SemanticArticleSearchResponse
+	19, // 21: expert_search.ExpertSearchService.SemanticSearchExperts:output_type -> expert_search.SemanticExpertSearchResponse
+	22, // 22: expert_search.ExpertSearchService.SemanticSearchDepartments:output_type -> expert_search.SemanticDepartmentSearchResponse
+	15, // [15:23] is the sub-list for method output_type
+	7,  // [7:15] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_proto_service_service_proto_init() }
@@ -1199,7 +1874,7 @@ func file_proto_service_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_service_service_proto_rawDesc), len(file_proto_service_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

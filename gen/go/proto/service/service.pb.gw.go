@@ -202,6 +202,111 @@ func local_request_ExpertSearchService_SearchArticles_0(ctx context.Context, mar
 	return msg, metadata, err
 }
 
+var filter_ExpertSearchService_SemanticSearchArticles_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
+func request_ExpertSearchService_SemanticSearchArticles_0(ctx context.Context, marshaler runtime.Marshaler, client ExpertSearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SemanticArticleSearchRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ExpertSearchService_SemanticSearchArticles_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.SemanticSearchArticles(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ExpertSearchService_SemanticSearchArticles_0(ctx context.Context, marshaler runtime.Marshaler, server ExpertSearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SemanticArticleSearchRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ExpertSearchService_SemanticSearchArticles_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.SemanticSearchArticles(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_ExpertSearchService_SemanticSearchExperts_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
+func request_ExpertSearchService_SemanticSearchExperts_0(ctx context.Context, marshaler runtime.Marshaler, client ExpertSearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SemanticExpertSearchRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ExpertSearchService_SemanticSearchExperts_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.SemanticSearchExperts(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ExpertSearchService_SemanticSearchExperts_0(ctx context.Context, marshaler runtime.Marshaler, server ExpertSearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SemanticExpertSearchRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ExpertSearchService_SemanticSearchExperts_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.SemanticSearchExperts(ctx, &protoReq)
+	return msg, metadata, err
+}
+
+var filter_ExpertSearchService_SemanticSearchDepartments_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+
+func request_ExpertSearchService_SemanticSearchDepartments_0(ctx context.Context, marshaler runtime.Marshaler, client ExpertSearchServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SemanticDepartmentSearchRequest
+		metadata runtime.ServerMetadata
+	)
+	if req.Body != nil {
+		_, _ = io.Copy(io.Discard, req.Body)
+	}
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ExpertSearchService_SemanticSearchDepartments_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := client.SemanticSearchDepartments(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+}
+
+func local_request_ExpertSearchService_SemanticSearchDepartments_0(ctx context.Context, marshaler runtime.Marshaler, server ExpertSearchServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var (
+		protoReq SemanticDepartmentSearchRequest
+		metadata runtime.ServerMetadata
+	)
+	if err := req.ParseForm(); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ExpertSearchService_SemanticSearchDepartments_0); err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+	msg, err := server.SemanticSearchDepartments(ctx, &protoReq)
+	return msg, metadata, err
+}
+
 // RegisterExpertSearchServiceHandlerServer registers the http handlers for service ExpertSearchService to "mux".
 // UnaryRPC     :call ExpertSearchServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
@@ -307,6 +412,66 @@ func RegisterExpertSearchServiceHandlerServer(ctx context.Context, mux *runtime.
 			return
 		}
 		forward_ExpertSearchService_SearchArticles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ExpertSearchService_SemanticSearchArticles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/expert_search.ExpertSearchService/SemanticSearchArticles", runtime.WithHTTPPathPattern("/v1/semantic/articles"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ExpertSearchService_SemanticSearchArticles_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ExpertSearchService_SemanticSearchArticles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ExpertSearchService_SemanticSearchExperts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/expert_search.ExpertSearchService/SemanticSearchExperts", runtime.WithHTTPPathPattern("/v1/semantic/experts"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ExpertSearchService_SemanticSearchExperts_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ExpertSearchService_SemanticSearchExperts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ExpertSearchService_SemanticSearchDepartments_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateIncomingContext(ctx, mux, req, "/expert_search.ExpertSearchService/SemanticSearchDepartments", runtime.WithHTTPPathPattern("/v1/semantic/departments"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ExpertSearchService_SemanticSearchDepartments_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ExpertSearchService_SemanticSearchDepartments_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
 
 	return nil
@@ -433,21 +598,78 @@ func RegisterExpertSearchServiceHandlerClient(ctx context.Context, mux *runtime.
 		}
 		forward_ExpertSearchService_SearchArticles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 	})
+	mux.Handle(http.MethodGet, pattern_ExpertSearchService_SemanticSearchArticles_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/expert_search.ExpertSearchService/SemanticSearchArticles", runtime.WithHTTPPathPattern("/v1/semantic/articles"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ExpertSearchService_SemanticSearchArticles_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ExpertSearchService_SemanticSearchArticles_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ExpertSearchService_SemanticSearchExperts_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/expert_search.ExpertSearchService/SemanticSearchExperts", runtime.WithHTTPPathPattern("/v1/semantic/experts"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ExpertSearchService_SemanticSearchExperts_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ExpertSearchService_SemanticSearchExperts_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
+	mux.Handle(http.MethodGet, pattern_ExpertSearchService_SemanticSearchDepartments_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		annotatedContext, err := runtime.AnnotateContext(ctx, mux, req, "/expert_search.ExpertSearchService/SemanticSearchDepartments", runtime.WithHTTPPathPattern("/v1/semantic/departments"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ExpertSearchService_SemanticSearchDepartments_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		forward_ExpertSearchService_SemanticSearchDepartments_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+	})
 	return nil
 }
 
 var (
-	pattern_ExpertSearchService_InitializeSystem_0  = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "admin", "initialize-system"}, ""))
-	pattern_ExpertSearchService_SearchExperts_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "experts"}, ""))
-	pattern_ExpertSearchService_SearchDepartments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "departments"}, ""))
-	pattern_ExpertSearchService_AnalyzeTopic_0      = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "analyze-topic"}, ""))
-	pattern_ExpertSearchService_SearchArticles_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "articles"}, ""))
+	pattern_ExpertSearchService_InitializeSystem_0          = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "admin", "initialize-system"}, ""))
+	pattern_ExpertSearchService_SearchExperts_0             = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "experts"}, ""))
+	pattern_ExpertSearchService_SearchDepartments_0         = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "departments"}, ""))
+	pattern_ExpertSearchService_AnalyzeTopic_0              = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "analyze-topic"}, ""))
+	pattern_ExpertSearchService_SearchArticles_0            = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "articles"}, ""))
+	pattern_ExpertSearchService_SemanticSearchArticles_0    = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "semantic", "articles"}, ""))
+	pattern_ExpertSearchService_SemanticSearchExperts_0     = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "semantic", "experts"}, ""))
+	pattern_ExpertSearchService_SemanticSearchDepartments_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "semantic", "departments"}, ""))
 )
 
 var (
-	forward_ExpertSearchService_InitializeSystem_0  = runtime.ForwardResponseMessage
-	forward_ExpertSearchService_SearchExperts_0     = runtime.ForwardResponseMessage
-	forward_ExpertSearchService_SearchDepartments_0 = runtime.ForwardResponseMessage
-	forward_ExpertSearchService_AnalyzeTopic_0      = runtime.ForwardResponseMessage
-	forward_ExpertSearchService_SearchArticles_0    = runtime.ForwardResponseMessage
+	forward_ExpertSearchService_InitializeSystem_0          = runtime.ForwardResponseMessage
+	forward_ExpertSearchService_SearchExperts_0             = runtime.ForwardResponseMessage
+	forward_ExpertSearchService_SearchDepartments_0         = runtime.ForwardResponseMessage
+	forward_ExpertSearchService_AnalyzeTopic_0              = runtime.ForwardResponseMessage
+	forward_ExpertSearchService_SearchArticles_0            = runtime.ForwardResponseMessage
+	forward_ExpertSearchService_SemanticSearchArticles_0    = runtime.ForwardResponseMessage
+	forward_ExpertSearchService_SemanticSearchExperts_0     = runtime.ForwardResponseMessage
+	forward_ExpertSearchService_SemanticSearchDepartments_0 = runtime.ForwardResponseMessage
 )
