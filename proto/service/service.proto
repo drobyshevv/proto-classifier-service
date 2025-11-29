@@ -44,21 +44,9 @@ service ExpertSearchService {
 
   // ==================== СЕМАНТИЧЕСКИЙ ПОИСК ====================
   rpc SemanticSearchArticles(SemanticArticleSearchRequest) returns (SemanticArticleSearchResponse) {
-      option (google.api.http) = {
-          get: "/v1/semantic/articles"
-      };
-  }
-
-  rpc SemanticSearchExperts(SemanticExpertSearchRequest) returns (SemanticExpertSearchResponse) {
-      option (google.api.http) = {
-          get: "/v1/semantic/experts"
-      };
-  }
-
-  rpc SemanticSearchDepartments(SemanticDepartmentSearchRequest) returns (SemanticDepartmentSearchResponse) {
-      option (google.api.http) = {
-          get: "/v1/semantic/departments"
-      };
+    option (google.api.http) = {
+      get: "/v1/semantic/articles"
+    };
   }
 }
 
@@ -172,68 +160,16 @@ message TopicAnalysisResponse {
 }
 
 // ==================== СЕМАНТИЧЕСКИЙ ПОИСК СТАТЕЙ ====================
+// Запрос для семантического поиска статей
 message SemanticArticleSearchRequest {
-    string query = 1;
-    int32 max_results = 2;
-    float min_score = 3;
+  string query = 1;           // пользовательский запрос (строка)
+  int32 max_results = 2;      // лимит результатов (default: 10)
+  // опционально: pagination
+  int32 offset = 3;
 }
 
+// Ответ для семантического поиска статей
 message SemanticArticleSearchResponse {
-    repeated SemanticArticle articles = 1;
-    int32 total_found = 2;
-}
-
-message SemanticArticle {
-    string document_id = 1;
-    string title_ru = 2;
-    string abstract_ru = 3;
-    int32 year = 4;
-    repeated string authors = 5;
-
-    float semantic_score = 6;
-    repeated string matched_topics = 7;
-}
-
-// ==================== СЕМАНТИЧЕСКИЙ ПОИСК ЭКСПЕРТОВ ====================
-message SemanticExpertSearchRequest {
-    string query = 1;
-    int32 max_results = 2;
-    float min_score = 3;
-}
-
-message SemanticExpertSearchResponse {
-    repeated SemanticExpert experts = 1;
-    int32 total_found = 2;
-}
-
-message SemanticExpert {
-    string author_id = 1;
-    string name_ru = 2;
-    string department = 3;
-
-    float semantic_score = 4;
-    int32 total_articles = 5;
-    repeated string top_topics = 6;
-}
-
-// ==================== СЕМАНТИЧЕСКИЙ ПОИСК ПОДРАЗДЕЛЕНИЙ ====================
-message SemanticDepartmentSearchRequest {
-    string query = 1;
-    int32 max_results = 2;
-    float min_score = 3;
-}
-
-message SemanticDepartmentSearchResponse {
-    repeated SemanticDepartment departments = 1;
-    int32 total_found = 2;
-}
-
-message SemanticDepartment {
-    string organization_id = 1;
-    string name = 2;
-
-    float semantic_score = 3;
-    int32 total_articles = 4;
-    int32 expert_count = 5;
-    repeated string top_topics = 6;
+  repeated Article results = 1;
+  int32 total_found = 2;
 }

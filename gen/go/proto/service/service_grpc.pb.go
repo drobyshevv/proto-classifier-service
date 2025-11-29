@@ -19,14 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ExpertSearchService_InitializeSystem_FullMethodName          = "/expert_search.ExpertSearchService/InitializeSystem"
-	ExpertSearchService_SearchExperts_FullMethodName             = "/expert_search.ExpertSearchService/SearchExperts"
-	ExpertSearchService_SearchDepartments_FullMethodName         = "/expert_search.ExpertSearchService/SearchDepartments"
-	ExpertSearchService_AnalyzeTopic_FullMethodName              = "/expert_search.ExpertSearchService/AnalyzeTopic"
-	ExpertSearchService_SearchArticles_FullMethodName            = "/expert_search.ExpertSearchService/SearchArticles"
-	ExpertSearchService_SemanticSearchArticles_FullMethodName    = "/expert_search.ExpertSearchService/SemanticSearchArticles"
-	ExpertSearchService_SemanticSearchExperts_FullMethodName     = "/expert_search.ExpertSearchService/SemanticSearchExperts"
-	ExpertSearchService_SemanticSearchDepartments_FullMethodName = "/expert_search.ExpertSearchService/SemanticSearchDepartments"
+	ExpertSearchService_InitializeSystem_FullMethodName       = "/expert_search.ExpertSearchService/InitializeSystem"
+	ExpertSearchService_SearchExperts_FullMethodName          = "/expert_search.ExpertSearchService/SearchExperts"
+	ExpertSearchService_SearchDepartments_FullMethodName      = "/expert_search.ExpertSearchService/SearchDepartments"
+	ExpertSearchService_AnalyzeTopic_FullMethodName           = "/expert_search.ExpertSearchService/AnalyzeTopic"
+	ExpertSearchService_SearchArticles_FullMethodName         = "/expert_search.ExpertSearchService/SearchArticles"
+	ExpertSearchService_SemanticSearchArticles_FullMethodName = "/expert_search.ExpertSearchService/SemanticSearchArticles"
 )
 
 // ExpertSearchServiceClient is the client API for ExpertSearchService service.
@@ -45,8 +43,6 @@ type ExpertSearchServiceClient interface {
 	SearchArticles(ctx context.Context, in *ArticleSearchRequest, opts ...grpc.CallOption) (*ArticleSearchResponse, error)
 	// ==================== СЕМАНТИЧЕСКИЙ ПОИСК ====================
 	SemanticSearchArticles(ctx context.Context, in *SemanticArticleSearchRequest, opts ...grpc.CallOption) (*SemanticArticleSearchResponse, error)
-	SemanticSearchExperts(ctx context.Context, in *SemanticExpertSearchRequest, opts ...grpc.CallOption) (*SemanticExpertSearchResponse, error)
-	SemanticSearchDepartments(ctx context.Context, in *SemanticDepartmentSearchRequest, opts ...grpc.CallOption) (*SemanticDepartmentSearchResponse, error)
 }
 
 type expertSearchServiceClient struct {
@@ -117,26 +113,6 @@ func (c *expertSearchServiceClient) SemanticSearchArticles(ctx context.Context, 
 	return out, nil
 }
 
-func (c *expertSearchServiceClient) SemanticSearchExperts(ctx context.Context, in *SemanticExpertSearchRequest, opts ...grpc.CallOption) (*SemanticExpertSearchResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SemanticExpertSearchResponse)
-	err := c.cc.Invoke(ctx, ExpertSearchService_SemanticSearchExperts_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *expertSearchServiceClient) SemanticSearchDepartments(ctx context.Context, in *SemanticDepartmentSearchRequest, opts ...grpc.CallOption) (*SemanticDepartmentSearchResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SemanticDepartmentSearchResponse)
-	err := c.cc.Invoke(ctx, ExpertSearchService_SemanticSearchDepartments_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // ExpertSearchServiceServer is the server API for ExpertSearchService service.
 // All implementations must embed UnimplementedExpertSearchServiceServer
 // for forward compatibility.
@@ -153,8 +129,6 @@ type ExpertSearchServiceServer interface {
 	SearchArticles(context.Context, *ArticleSearchRequest) (*ArticleSearchResponse, error)
 	// ==================== СЕМАНТИЧЕСКИЙ ПОИСК ====================
 	SemanticSearchArticles(context.Context, *SemanticArticleSearchRequest) (*SemanticArticleSearchResponse, error)
-	SemanticSearchExperts(context.Context, *SemanticExpertSearchRequest) (*SemanticExpertSearchResponse, error)
-	SemanticSearchDepartments(context.Context, *SemanticDepartmentSearchRequest) (*SemanticDepartmentSearchResponse, error)
 	mustEmbedUnimplementedExpertSearchServiceServer()
 }
 
@@ -182,12 +156,6 @@ func (UnimplementedExpertSearchServiceServer) SearchArticles(context.Context, *A
 }
 func (UnimplementedExpertSearchServiceServer) SemanticSearchArticles(context.Context, *SemanticArticleSearchRequest) (*SemanticArticleSearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SemanticSearchArticles not implemented")
-}
-func (UnimplementedExpertSearchServiceServer) SemanticSearchExperts(context.Context, *SemanticExpertSearchRequest) (*SemanticExpertSearchResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SemanticSearchExperts not implemented")
-}
-func (UnimplementedExpertSearchServiceServer) SemanticSearchDepartments(context.Context, *SemanticDepartmentSearchRequest) (*SemanticDepartmentSearchResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SemanticSearchDepartments not implemented")
 }
 func (UnimplementedExpertSearchServiceServer) mustEmbedUnimplementedExpertSearchServiceServer() {}
 func (UnimplementedExpertSearchServiceServer) testEmbeddedByValue()                             {}
@@ -318,42 +286,6 @@ func _ExpertSearchService_SemanticSearchArticles_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ExpertSearchService_SemanticSearchExperts_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SemanticExpertSearchRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ExpertSearchServiceServer).SemanticSearchExperts(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ExpertSearchService_SemanticSearchExperts_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExpertSearchServiceServer).SemanticSearchExperts(ctx, req.(*SemanticExpertSearchRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ExpertSearchService_SemanticSearchDepartments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SemanticDepartmentSearchRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ExpertSearchServiceServer).SemanticSearchDepartments(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: ExpertSearchService_SemanticSearchDepartments_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ExpertSearchServiceServer).SemanticSearchDepartments(ctx, req.(*SemanticDepartmentSearchRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // ExpertSearchService_ServiceDesc is the grpc.ServiceDesc for ExpertSearchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -384,14 +316,6 @@ var ExpertSearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SemanticSearchArticles",
 			Handler:    _ExpertSearchService_SemanticSearchArticles_Handler,
-		},
-		{
-			MethodName: "SemanticSearchExperts",
-			Handler:    _ExpertSearchService_SemanticSearchExperts_Handler,
-		},
-		{
-			MethodName: "SemanticSearchDepartments",
-			Handler:    _ExpertSearchService_SemanticSearchDepartments_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
